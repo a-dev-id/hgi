@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Feature;
 use App\Models\Villa;
 use App\Models\VillaFeature;
 use Illuminate\Http\Request;
@@ -54,8 +55,9 @@ class VillaFeatureController extends Controller
     public function show($id)
     {
         $villa = Villa::find($id);
-        $feature = VillaFeature::where('villa_id', $villa->id)->get();
-        return view('admin.villa.feature.index')->with(compact('feature', 'villa'));
+        $villa_feature = VillaFeature::where('villa_id', $villa->id)->get();
+        $features = Feature::all();
+        return view('admin.villa.feature.index')->with(compact('features', 'villa', 'villa_feature'));
     }
 
     /**

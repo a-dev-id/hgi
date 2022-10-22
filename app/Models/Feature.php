@@ -14,4 +14,10 @@ class Feature extends Model
         'icon',
         'status',
     ];
+
+    public function villa_features()
+    {
+        return $this->belongsTo(VillaFeature::class, 'feature_id', 'id');
+    }
+
 }

@@ -20,4 +20,9 @@ class VillaFeature extends Model
     {
         return $this->belongsTo(Villa::class, 'villa_id', 'id');
     }
+
+    public function feature()
+    {
+        return $this->hasMany(Feature::class, 'feature_id', 'id');
+    }
 }

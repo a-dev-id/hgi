@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,8 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [])
-    .browserSync('localhost:8000')
+mix.js("resources/js/app.js", "public/js")
+    .postCss("resources/css/app.css", "public/css", [])
+    .browserSync("http://localhost:8000/")
     .disableNotifications()
-    .copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');
+    .copyDirectory("vendor/tinymce/tinymce", "public/js/tinymce");
