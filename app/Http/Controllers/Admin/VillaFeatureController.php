@@ -54,9 +54,10 @@ class VillaFeatureController extends Controller
      */
     public function show($id)
     {
+        $features = Feature::all();
         $villa = Villa::find($id);
         $villa_feature = VillaFeature::where('villa_id', $villa->id)->get();
-        $features = Feature::all();
+        
         return view('admin.villa.feature.index')->with(compact('features', 'villa', 'villa_feature'));
     }
 

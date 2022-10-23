@@ -23,6 +23,6 @@ class VillaFeature extends Model
 
     public function feature()
     {
-        return $this->hasMany(Feature::class, 'feature_id', 'id');
+        return $this->hasOne(Feature::class, 'feature_id', 'id');
     }
 }

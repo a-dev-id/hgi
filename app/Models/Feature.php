@@ -15,7 +15,7 @@ class Feature extends Model
         'status',
     ];
 
-    public function villa_features()
+    public function villa_feature()
     {
         return $this->belongsTo(VillaFeature::class, 'feature_id', 'id');
     }

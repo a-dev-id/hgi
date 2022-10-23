@@ -94,9 +94,10 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($villa_feature as $data)
+                                    @foreach (\App\Models\Feature::where('id', '=', $data->feature_id)->where('status', '=', '1')->get() as $data_feature)
                                     <tr>
-                                        <td>{{ $data->feature->title }}</td>
-                                        <td><img src="{{ asset($data->feature->icon) }}" style="width: 32px"></td>
+                                        <td>{{ $data_feature->title }}</td>
+                                        <td><img src="{{ asset($data_feature->icon) }}" style="width: 32px"></td>
                                         <td>
                                             @if ($data->status == '1')
                                             <span class="badge badge-success"><i class="fas fa-check-circle"></i> Published</span>
@@ -106,6 +107,7 @@
                                         </td>
                                         <td><button class="btn btn-success"><i class="fas fa-trash"></i></button></td>
                                     </tr>
+                                    @endforeach
                                     @endforeach
                                 </tbody>
                                 <tfoot>

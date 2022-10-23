@@ -23,7 +23,7 @@ class Villa extends Model
         'status',
     ];
 
-    public function features()
+    public function villa_features()
     {
         return $this->hasMany(VillaFeature::class, 'villa_id', 'id');
     }
