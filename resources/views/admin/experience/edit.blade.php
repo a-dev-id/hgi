@@ -1,5 +1,5 @@
-@section('title', 'New Villa')
-@section('villa_active', 'active')
+@section('title', 'Experience Edit')
+@section('experience_active', 'active')
 
 @push('js')
 <script src="{{ asset('vendors/adminlte') }}/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -45,13 +45,6 @@
             toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
         });
 </script>
-<script>
-    tinymce.init({
-            selector: 'textarea#metadescription',
-            plugins: 'code table lists',
-            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
-        });
-</script>
 @endpush
 
 @push('css')
@@ -69,7 +62,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('villa.index') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('experience.index') }}">Home</a></li>
                         <li class="breadcrumb-item active">@yield('title')</li>
                     </ol>
                 </div>
@@ -79,15 +72,15 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                {{-- <form method="POST" action="{{ route('villa-setting.update', [$setting->id]) }}" enctype="multipart/form-data" class="col-lg-12"> --}}
-                    <form method="POST" action="{{ route('villa.store') }}" enctype="multipart/form-data" class="col-lg-12">
-                        {{-- @method('PUT') --}}
+                <form method="POST" action="{{ route('experience.update', [$edit_data->id]) }}" enctype="multipart/form-data" class="col-lg-12">
+                    {{-- <form method="POST" action="{{ route('experience.store') }}" enctype="multipart/form-data" class="col-lg-12"> --}}
+                        @method('PUT')
                         @csrf
-                        <div class="card card-success card-outline">
+                        <div class="card card-warning card-outline">
                             <div class="card-header">
-                                <h3 class="card-title font-weight-bold"><i class="fas fa-plus"></i> New</h3>
+                                <h3 class="card-title font-weight-bold"><i class="fas fa-edit"></i> Edit</h3>
                                 <div class="card-tools">
-                                    <button class="btn btn-success font-weight-bold"><i class="fas fa-save"></i> Submit</button>
+                                    <button class="btn btn-warning font-weight-bold"><i class="fas fa-save"></i> Update</button>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -95,44 +88,27 @@
                                     <div class="col-lg-8">
                                         <div class="form-group">
                                             <label>Title</label>
-                                            <input type="text" class="form-control" placeholder="Type something" name="title">
+                                            <input type="text" class="form-control" placeholder="Type something" name="title" value="{{ $edit_data->title }}">
                                         </div>
                                         <div class="form-group">
                                             <label>Subtitle</label>
-                                            <input type="text" class="form-control" placeholder="Type something" name="subtitle">
+                                            <input type="text" class="form-control" placeholder="Type something" name="subtitle" value="{{ $edit_data->subtitle }}">
                                         </div>
                                         <div class="form-group">
                                             <label>Excerpt</label>
-                                            <textarea id="excerpt" name="excerpt"></textarea>
+                                            <textarea id="excerpt" name="excerpt">{{ $edit_data->excerpt }}</textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea id="description" name="description"></textarea>
+                                            <textarea id="description" name="description">{{ $edit_data->description }}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label for="banner-image">Banner Image</label>
-                                            <div class="input-group mb-3">
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="banner-image" name="banner_image">
-                                                    <label class="custom-file-label" for="banner-image">Choose file</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Meta Title</label>
-                                            <input type="text" class="form-control" placeholder="Type something" name="meta_title">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Meta Description</label>
-                                            <textarea id="metadescription" name="meta_description"></textarea>
-                                        </div>
-                                        <div class="form-group">
                                             <label>Status</label>
                                             <select class="form-control" name="status">
-                                                <option value="1">Publish</option>
-                                                <option value="0">Draft</option>
+                                                <option value="1" @if ($edit_data->status == '1') selected @else @endif>Publish</option>
+                                                <option value="0" @if ($edit_data->status == '0') selected @else @endif>Draft</option>
                                             </select>
                                         </div>
                                     </div>

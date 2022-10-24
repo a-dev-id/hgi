@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Experience extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'subtitle',
+        'slug',
+        'excerpt',
+        'description',
+        'banner_image',
+        'button_text',
+        'button_link',
+        'status',
+    ];
+
+    public function images()
+    {
+        return $this->hasMany(ExperienceImage::class, 'experience_id', 'id');
+    }
 }

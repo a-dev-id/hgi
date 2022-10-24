@@ -46,8 +46,6 @@ class ExperienceController extends Controller
             'slug' => Str::slug($request->title),
             'excerpt' => $request->excerpt,
             'description' => $request->description,
-            'meta_title' => $request->meta_title,
-            'meta_description' => $request->meta_description,
             'status' => $request->status,
         ]);
         return redirect()->route('experience.index')->with('message', $request->title . ' created Successfully');
@@ -92,8 +90,6 @@ class ExperienceController extends Controller
         $data->slug = Str::slug($request->title);
         $data->excerpt = $request->excerpt;
         $data->description = $request->description;
-        $data->meta_title = $request->meta_title;
-        $data->meta_description = $request->meta_description;
         $data->status = $request->status;
 
         $data->save();
