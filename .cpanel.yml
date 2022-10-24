@@ -1,5 +1,5 @@
 ---
 deployment:
 tasks:
-  - export DEPLOYPATH=//home/adag5941/hgi/git
+  - export DEPLOYPATH=/home/adag5941/hgi
   - /bin/cp -r * $DEPLOYPATH
