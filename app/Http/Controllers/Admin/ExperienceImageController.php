@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Feature;
-use App\Models\Villa;
-use App\Models\VillaFeature;
 use Illuminate\Http\Request;
 
-class VillaFeatureController extends Controller
+class ExperienceImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,12 +35,7 @@ class VillaFeatureController extends Controller
      */
     public function store(Request $request)
     {
-        VillaFeature::create([
-            'villa_id' => $request->villa_id,
-            'feature_id' => $request->feature_id,
-            'status' => $request->status,
-        ]);
-        return redirect()->route('villa-feature.show', [$request->villa_id])->with('message', 'Item added Successfully');
+        //
     }
 
     /**
@@ -54,11 +46,7 @@ class VillaFeatureController extends Controller
      */
     public function show($id)
     {
-        $features = Feature::all();
-        $villa = Villa::find($id);
-        $villa_feature = VillaFeature::where('villa_id', $villa->id)->get();
-        
-        return view('admin.villa.feature.index')->with(compact('features', 'villa', 'villa_feature'));
+        //
     }
 
     /**
@@ -92,8 +80,6 @@ class VillaFeatureController extends Controller
      */
     public function destroy($id)
     {
-        $data = VillaFeature::find($id);
-        $data->delete();
-        return redirect()->route('villa-feature.show', [$data->villa_id])->with('message', 'Item Deleted Successfully');
+        //
     }
 }

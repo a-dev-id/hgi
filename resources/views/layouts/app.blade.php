@@ -47,6 +47,12 @@
                                 <p>Villa</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('experience.index') }}" class="nav-link @yield('experience_active')">
+                                <i class="nav-icon fas fa-hiking"></i>
+                                <p>Experience</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

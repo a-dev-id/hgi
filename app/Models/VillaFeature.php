@@ -11,8 +11,7 @@ class VillaFeature extends Model
 
     protected $fillable = [
         'villa_id',
-        'title',
-        'icon',
+        'feature_id',
         'status',
     ];
 

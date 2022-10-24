@@ -1,4 +1,4 @@
-@section('title', 'Villa')
+@section('title', 'Villa Feature')
 @section('villa_active', 'active')
 
 @push('js')
@@ -88,7 +88,6 @@
                                     <tr>
                                         <th>Title</th>
                                         <th>Icon</th>
-                                        <th>Status</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -99,13 +98,33 @@
                                         <td>{{ $data_feature->title }}</td>
                                         <td><img src="{{ asset($data_feature->icon) }}" style="width: 32px"></td>
                                         <td>
-                                            @if ($data->status == '1')
-                                            <span class="badge badge-success"><i class="fas fa-check-circle"></i> Published</span>
-                                            @else
-                                            <span class="badge badge-secondary"><i class="fas fa-minus-circle"></i> Draft</span>
-                                            @endif
+                                            <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_feature_delete_{{ $data->id }}" data-placement="top" title="Delete"><i class="fas fa-trash"></i></button>
                                         </td>
-                                        <td><button class="btn btn-success"><i class="fas fa-trash"></i></button></td>
+
+                                        {{-- delete modal --}}
+                                        <div class="modal fade" id="modal_feature_delete_{{ $data->id }}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-danger">
+                                                        <h4 class="modal-title"><i class="fas fa-exclamation-triangle"></i> Warning!</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body text-left">
+                                                        Are you sure want to delete this <strong>"{{ $data_feature->title }}"</strong> ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-ban"></i> Cancel</button>
+                                                        <form method="POST" action="{{ route('villa-feature.destroy', [$data->id]) }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </tr>
                                     @endforeach
                                     @endforeach
@@ -114,7 +133,6 @@
                                     <tr>
                                         <th>Title</th>
                                         <th>Icon</th>
-                                        <th>Status</th>
                                         <th></th>
                                     </tr>
                                 </tfoot>
@@ -134,7 +152,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Feature</label>
-                                <select class="form-control">
+                                <select class="form-control" name="feature_id">
                                     <option>- select -</option>
                                     @foreach ($features as $data)
                                     <option value="{{ $data->id }}">{{ $data->title }}</option>
@@ -142,13 +160,6 @@
                                 </select>
                             </div>
                             <input type="hidden" name="villa_id" value="{{ $villa->id }}">
-                            <div class="form-group">
-                                <label>Status</label>
-                                <select class="form-control" name="status">
-                                    <option value="1">Publish</option>
-                                    <option value="0">Draft</option>
-                                </select>
-                            </div>
                         </div>
                     </div>
                 </form>
