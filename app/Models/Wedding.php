@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Wedding extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'subtitle',
+        'slug',
+        'excerpt',
+        'description',
+        'image',
+        'price',
+        'button_text',
+        'button_link',
+        'status',
+    ];
 }
