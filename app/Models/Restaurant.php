@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Experience extends Model
+class Restaurant extends Model
 {
     use HasFactory;
 
@@ -15,8 +15,8 @@ class Experience extends Model
         'slug',
         'excerpt',
         'description',
+        'image',
         'price',
-        'pax',
         'button_text',
         'button_link',
         'status',
@@ -24,6 +24,6 @@ class Experience extends Model
 
     public function images()
     {
-        return $this->hasMany(ExperienceImage::class, 'experience_id', 'id');
+        return $this->hasMany(RestaurantImage::class, 'restaurant_id', 'id');
     }
 }

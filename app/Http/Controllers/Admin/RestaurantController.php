@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Experience;
-use App\Models\ExperienceSetting;
+use App\Models\Restaurant;
+use App\Models\RestaurantSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class ExperienceController extends Controller
+class RestaurantController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class ExperienceController extends Controller
      */
     public function index()
     {
-        $experiences =  Experience::all();
-        $setting = ExperienceSetting::find(1);
-        return view('admin.experience.index')->with(compact('experiences', 'setting'));
+        $restaurants = Restaurant::all();
+        $setting = RestaurantSetting::find(1);
+        return view('admin.restaurant.index')->with(compact('restaurants', 'setting'));
     }
 
     /**
@@ -29,7 +29,7 @@ class ExperienceController extends Controller
      */
     public function create()
     {
-        return view('admin.experience.create');
+        return view('admin.restaurant.create');
     }
 
     /**
@@ -40,17 +40,25 @@ class ExperienceController extends Controller
      */
     public function store(Request $request)
     {
-        Experience::create([
+        if (empty($request->file('image'))) {
+            $image = null;
+        } else {
+            $image = $request->file('image')->store('images/restaurant/list', 'public');
+        }
+
+        Restaurant::create([
             'title' => $request->title,
             'subtitle' => $request->subtitle,
             'slug' => Str::slug($request->title),
             'excerpt' => $request->excerpt,
             'description' => $request->description,
             'price' => $request->price,
-            'pax' => $request->pax,
+            'image' => $image,
+            'button_text' => $request->button_text,
+            'button_link' => $request->button_link,
             'status' => $request->status,
         ]);
-        return redirect()->route('experience.index')->with('message', $request->title . ' created Successfully');
+        return redirect()->route('restaurant.index')->with('message', $request->title . ' created Successfully');
     }
 
     /**
@@ -72,8 +80,8 @@ class ExperienceController extends Controller
      */
     public function edit($id)
     {
-        $edit_data = Experience::find($id);
-        return view('admin.experience.edit')->with(compact('edit_data'));
+        $edit_data = Restaurant::find($id);
+        return view('admin.restaurant.edit')->with(compact('edit_data'));
     }
 
     /**
@@ -85,7 +93,13 @@ class ExperienceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Experience::find($id);
+        if (empty($request->file('image'))) {
+            $image = $request->old_image;
+        } else {
+            $image = $request->file('image')->store('images/restaurant/list', 'public');
+        }
+
+        $data = Restaurant::find($id);
 
         $data->title = $request->title;
         $data->subtitle = $request->subtitle;
@@ -93,12 +107,14 @@ class ExperienceController extends Controller
         $data->excerpt = $request->excerpt;
         $data->description = $request->description;
         $data->price = $request->price;
-        $data->pax = $request->pax;
+        $data->image = $image;
+        $data->button_text = $request->button_text;
+        $data->button_link = $request->button_link;
         $data->status = $request->status;
 
         $data->save();
 
-        return redirect()->route('experience.index')->with('message', $request->title . ' edited Successfully');
+        return redirect()->route('restaurant.index')->with('message', $request->title . ' edited Successfully');
     }
 
     /**
@@ -109,8 +125,8 @@ class ExperienceController extends Controller
      */
     public function destroy($id)
     {
-        $data = Experience::find($id);
+        $data = Restaurant::find($id);
         $data->delete();
-        return redirect()->route('experience.index')->with('message', $data->title . ' deleted Successfully');
+        return redirect()->route('restaurant.index')->with('message', $data->title . ' deleted Successfully');
     }
 }

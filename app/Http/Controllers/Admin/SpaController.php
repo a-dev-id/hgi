@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Experience;
-use App\Models\ExperienceSetting;
+use App\Models\Spa;
+use App\Models\SpaSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class ExperienceController extends Controller
+class SpaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class ExperienceController extends Controller
      */
     public function index()
     {
-        $experiences =  Experience::all();
-        $setting = ExperienceSetting::find(1);
-        return view('admin.experience.index')->with(compact('experiences', 'setting'));
+        $spas = Spa::all();
+        $setting = SpaSetting::find(1);
+        return view('admin.spa.index')->with(compact('spas', 'setting'));
     }
 
     /**
@@ -29,7 +29,7 @@ class ExperienceController extends Controller
      */
     public function create()
     {
-        return view('admin.experience.create');
+        return view('admin.spa.create');
     }
 
     /**
@@ -40,17 +40,23 @@ class ExperienceController extends Controller
      */
     public function store(Request $request)
     {
-        Experience::create([
+        if (empty($request->file('image'))) {
+            $image = null;
+        } else {
+            $image = $request->file('image')->store('images/spa/list', 'public');
+        }
+
+        Spa::create([
             'title' => $request->title,
             'subtitle' => $request->subtitle,
             'slug' => Str::slug($request->title),
             'excerpt' => $request->excerpt,
             'description' => $request->description,
             'price' => $request->price,
-            'pax' => $request->pax,
+            'image' => $image,
             'status' => $request->status,
         ]);
-        return redirect()->route('experience.index')->with('message', $request->title . ' created Successfully');
+        return redirect()->route('spa.index')->with('message', $request->title . ' created Successfully');
     }
 
     /**
@@ -72,8 +78,8 @@ class ExperienceController extends Controller
      */
     public function edit($id)
     {
-        $edit_data = Experience::find($id);
-        return view('admin.experience.edit')->with(compact('edit_data'));
+        $edit_data = Spa::find($id);
+        return view('admin.spa.edit')->with(compact('edit_data'));
     }
 
     /**
@@ -85,7 +91,13 @@ class ExperienceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Experience::find($id);
+        if (empty($request->file('image'))) {
+            $image = $request->old_image;
+        } else {
+            $image = $request->file('image')->store('images/spa/list', 'public');
+        }
+
+        $data = Spa::find($id);
 
         $data->title = $request->title;
         $data->subtitle = $request->subtitle;
@@ -93,12 +105,12 @@ class ExperienceController extends Controller
         $data->excerpt = $request->excerpt;
         $data->description = $request->description;
         $data->price = $request->price;
-        $data->pax = $request->pax;
+        $data->image = $image;
         $data->status = $request->status;
 
         $data->save();
 
-        return redirect()->route('experience.index')->with('message', $request->title . ' edited Successfully');
+        return redirect()->route('spa.index')->with('message', $request->title . ' edited Successfully');
     }
 
     /**
@@ -109,8 +121,8 @@ class ExperienceController extends Controller
      */
     public function destroy($id)
     {
-        $data = Experience::find($id);
+        $data = Spa::find($id);
         $data->delete();
-        return redirect()->route('experience.index')->with('message', $data->title . ' deleted Successfully');
+        return redirect()->route('spa.index')->with('message', $data->title . ' deleted Successfully');
     }
 }

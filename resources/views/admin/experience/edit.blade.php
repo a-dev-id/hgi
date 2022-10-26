@@ -105,6 +105,14 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
+                                            <label>Price</label>
+                                            <input type="text" class="form-control" placeholder="Type something" name="price" value="{{ $edit_data->price }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Pax</label>
+                                            <input type="text" class="form-control" placeholder="Type something" name="pax" value="{{ $edit_data->pax }}">
+                                        </div>
+                                        <div class="form-group">
                                             <label>Status</label>
                                             <select class="form-control" name="status">
                                                 <option value="1" @if ($edit_data->status == '1') selected @else @endif>Publish</option>
