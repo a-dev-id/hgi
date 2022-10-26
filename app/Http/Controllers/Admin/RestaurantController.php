@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
+use App\Models\RestaurantImage;
 use App\Models\RestaurantSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -19,7 +20,8 @@ class RestaurantController extends Controller
     {
         $restaurants = Restaurant::all();
         $setting = RestaurantSetting::find(1);
-        return view('admin.restaurant.index')->with(compact('restaurants', 'setting'));
+        $restaurant_image = RestaurantImage::where('restaurant_id', $setting->id)->get();
+        return view('admin.restaurant.index')->with(compact('restaurants', 'setting', 'restaurant_image'));
     }
 
     /**

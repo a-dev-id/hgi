@@ -49,7 +49,7 @@ class SpaImageController extends Controller
             'image' => $image,
             'status' => $request->status,
         ]);
-        return redirect()->route('spa-image.show', [$request->spa_id])->with('message', 'Item added Successfully');
+        return redirect()->route('spa.index')->with('message', 'Item added Successfully');
     }
 
     /**
@@ -60,10 +60,7 @@ class SpaImageController extends Controller
      */
     public function show($id)
     {
-        $spa =  Spa::find($id);
-        $spa_image = spaImage::where('spa_id', $spa->id)->get();
-        
-        return view('admin.spa.image.index')->with(compact('spa', 'spa_image'));
+        //
     }
 
     /**
@@ -99,6 +96,6 @@ class SpaImageController extends Controller
     {
         $data = SpaImage::find($id);
         $data->delete();
-        return redirect()->route('spa-image.show', [$data->spa_id])->with('message', 'Item Deleted Successfully');
+        return redirect()->route('spa.index')->with('message', 'Item Deleted Successfully');
     }
 }

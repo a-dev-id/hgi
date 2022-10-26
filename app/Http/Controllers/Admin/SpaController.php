@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Spa;
+use App\Models\SpaImage;
 use App\Models\SpaSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -19,7 +20,8 @@ class SpaController extends Controller
     {
         $spas = Spa::all();
         $setting = SpaSetting::find(1);
-        return view('admin.spa.index')->with(compact('spas', 'setting'));
+        $spa_image = SpaImage::where('spa_id', $setting->id)->get();
+        return view('admin.spa.index')->with(compact('spas', 'setting', 'spa_image'));
     }
 
     /**

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Restaurant;
 use App\Models\RestaurantImage;
 use Illuminate\Http\Request;
 
@@ -49,7 +48,7 @@ class RestaurantImageController extends Controller
             'image' => $image,
             'status' => $request->status,
         ]);
-        return redirect()->route('restaurant-image.show', [$request->restaurant_id])->with('message', 'Item added Successfully');
+        return redirect()->route('restaurant.index')->with('message', 'Item added Successfully');
     }
 
     /**
@@ -60,10 +59,7 @@ class RestaurantImageController extends Controller
      */
     public function show($id)
     {
-        $restaurant =  Restaurant::find($id);
-        $restaurant_image = RestaurantImage::where('restaurant_id', $restaurant->id)->get();
-        
-        return view('admin.restaurant.image.index')->with(compact('restaurant', 'restaurant_image'));
+        //
     }
 
     /**
@@ -99,6 +95,6 @@ class RestaurantImageController extends Controller
     {
         $data = RestaurantImage::find($id);
         $data->delete();
-        return redirect()->route('restaurant-image.show', [$data->restaurant_id])->with('message', 'Item Deleted Successfully');
+        return redirect()->route('restaurant.index')->with('message', 'Item Deleted Successfully');
     }
 }
