@@ -1,5 +1,5 @@
-@section('title', 'New Experience')
-@section('experience_active', 'active')
+@section('title', 'New Spa')
+@section('spa_active', 'active')
 
 @push('js')
 <script src="{{ asset('vendors/adminlte') }}/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('experience.index') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('spa.index') }}">Home</a></li>
                         <li class="breadcrumb-item active">@yield('title')</li>
                     </ol>
                 </div>
@@ -72,58 +72,61 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                {{-- <form method="POST" action="{{ route('experience-setting.update', [$setting->id]) }}" enctype="multipart/form-data" class="col-lg-12"> --}}
-                    <form method="POST" action="{{ route('experience.store') }}" enctype="multipart/form-data" class="col-lg-12">
-                        {{-- @method('PUT') --}}
-                        @csrf
-                        <div class="card card-success card-outline">
-                            <div class="card-header">
-                                <h3 class="card-title font-weight-bold"><i class="fas fa-plus"></i> New</h3>
-                                <div class="card-tools">
-                                    <button class="btn btn-success font-weight-bold"><i class="fas fa-save"></i> Submit</button>
-                                </div>
+                <form method="POST" action="{{ route('spa.store') }}" enctype="multipart/form-data" class="col-lg-12">
+                    @csrf
+                    <div class="card card-success card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title font-weight-bold"><i class="fas fa-plus"></i> New</h3>
+                            <div class="card-tools">
+                                <button class="btn btn-success font-weight-bold"><i class="fas fa-save"></i> Submit</button>
                             </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <div class="form-group">
-                                            <label>Title</label>
-                                            <input type="text" class="form-control" placeholder="Type something" name="title">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Subtitle</label>
-                                            <input type="text" class="form-control" placeholder="Type something" name="subtitle">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Excerpt</label>
-                                            <textarea id="excerpt" name="excerpt"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Description</label>
-                                            <textarea id="description" name="description"></textarea>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input type="text" class="form-control" placeholder="Type something" name="title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Subtitle</label>
+                                        <input type="text" class="form-control" placeholder="Type something" name="subtitle">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Excerpt</label>
+                                        <textarea id="excerpt" name="excerpt"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea id="description" name="description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="image">Image</label>
+                                        <div class="input-group mb-3">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="image" name="image">
+                                                <label class="custom-file-label" for="image">Choose file</label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label>Price</label>
-                                            <input type="text" class="form-control" placeholder="Type something" name="price">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Pax</label>
-                                            <input type="text" class="form-control" placeholder="Type something" name="pax">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Status</label>
-                                            <select class="form-control" name="status">
-                                                <option value="1">Publish</option>
-                                                <option value="0">Draft</option>
-                                            </select>
-                                        </div>
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <input type="text" class="form-control" placeholder="Type something" name="price">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <select class="form-control" name="status">
+                                            <option value="1">Publish</option>
+                                            <option value="0">Draft</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

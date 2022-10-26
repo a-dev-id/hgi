@@ -32,9 +32,12 @@ Route::middleware(['auth', 'verified'])->prefix('panel/admin')->group(function (
     Route::resource('experience', App\Http\Controllers\Admin\ExperienceController::class);
     Route::resource('experience-setting', App\Http\Controllers\Admin\ExperienceSettingController::class);
     Route::resource('experience-image', App\Http\Controllers\Admin\ExperienceImageController::class);
+
+    Route::resource('spa', App\Http\Controllers\Admin\SpaController::class);
+    Route::resource('spa-setting', App\Http\Controllers\Admin\SpaSettingController::class);
+    Route::resource('spa-image', App\Http\Controllers\Admin\SpaImageController::class);
+
+    Route::resource('restaurant', App\Http\Controllers\Admin\RestaurantController::class);
+    Route::resource('restaurant-setting', App\Http\Controllers\Admin\RestaurantSettingController::class);
+    Route::resource('restaurant-image', App\Http\Controllers\Admin\RestaurantImageController::class);
 });
-
-
-Route::get('/nandini', function () {
-    return view('welcome');
-})->domain('nandini.' . env('APP_URL'));

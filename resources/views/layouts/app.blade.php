@@ -53,6 +53,18 @@
                                 <p>Experience</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('spa.index') }}" class="nav-link @yield('spa_active')">
+                                <i class="nav-icon fas fa-spa"></i>
+                                <p>Spa</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('restaurant.index') }}" class="nav-link @yield('restaurant_active')">
+                                <i class="nav-icon fas fa-utensils"></i>
+                                <p>Restaurant</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

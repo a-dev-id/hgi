@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Experience;
-use App\Models\ExperienceSetting;
+use App\Models\SpaSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class ExperienceController extends Controller
+class SpaSettingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,7 @@ class ExperienceController extends Controller
      */
     public function index()
     {
-        $experiences =  Experience::all();
-        $setting = ExperienceSetting::find(1);
-        return view('admin.experience.index')->with(compact('experiences', 'setting'));
+        //
     }
 
     /**
@@ -29,7 +26,7 @@ class ExperienceController extends Controller
      */
     public function create()
     {
-        return view('admin.experience.create');
+        //
     }
 
     /**
@@ -40,17 +37,7 @@ class ExperienceController extends Controller
      */
     public function store(Request $request)
     {
-        Experience::create([
-            'title' => $request->title,
-            'subtitle' => $request->subtitle,
-            'slug' => Str::slug($request->title),
-            'excerpt' => $request->excerpt,
-            'description' => $request->description,
-            'price' => $request->price,
-            'pax' => $request->pax,
-            'status' => $request->status,
-        ]);
-        return redirect()->route('experience.index')->with('message', $request->title . ' created Successfully');
+        //
     }
 
     /**
@@ -72,8 +59,7 @@ class ExperienceController extends Controller
      */
     public function edit($id)
     {
-        $edit_data = Experience::find($id);
-        return view('admin.experience.edit')->with(compact('edit_data'));
+        //
     }
 
     /**
@@ -85,20 +71,32 @@ class ExperienceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Experience::find($id);
+        if (empty($request->file('banner_image'))) {
+            $banner_image = $request->old_banner_image;
+        } else {
+            $banner_image = $request->file('banner_image')->store('images/spa/setting', 'public');
+        }
 
+        $data = SpaSetting::find($id);
         $data->title = $request->title;
         $data->subtitle = $request->subtitle;
         $data->slug = Str::slug($request->title);
         $data->excerpt = $request->excerpt;
         $data->description = $request->description;
-        $data->price = $request->price;
-        $data->pax = $request->pax;
+        $data->banner_image = $banner_image;
+        $data->meta_title = $request->meta_title;
+        $data->meta_description = $request->meta_description;
+        $data->operating_hour = $request->operating_hour;
+        $data->booking_rules = $request->booking_rules;
+        $data->contact_email = $request->contact_email;
+        $data->contact_phone = $request->contact_phone;
+        $data->button_text = $request->button_text;
+        $data->button_link = $request->button_link;
         $data->status = $request->status;
 
         $data->save();
 
-        return redirect()->route('experience.index')->with('message', $request->title . ' edited Successfully');
+        return redirect()->route('spa.index')->with('message', $request->title . ' updated Successfully');
     }
 
     /**
@@ -109,8 +107,6 @@ class ExperienceController extends Controller
      */
     public function destroy($id)
     {
-        $data = Experience::find($id);
-        $data->delete();
-        return redirect()->route('experience.index')->with('message', $data->title . ' deleted Successfully');
+        //
     }
 }
