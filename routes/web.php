@@ -40,4 +40,7 @@ Route::middleware(['auth', 'verified'])->prefix('panel/admin')->group(function (
     Route::resource('restaurant', App\Http\Controllers\Admin\RestaurantController::class);
     Route::resource('restaurant-setting', App\Http\Controllers\Admin\RestaurantSettingController::class);
     Route::resource('restaurant-image', App\Http\Controllers\Admin\RestaurantImageController::class);
+
+    Route::resource('wedding', App\Http\Controllers\Admin\WeddingController::class);
+    Route::resource('wedding-setting', App\Http\Controllers\Admin\WeddingSettingController::class);
 });

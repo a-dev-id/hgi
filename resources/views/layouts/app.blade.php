@@ -65,6 +65,12 @@
                                 <p>Restaurant</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('wedding.index') }}" class="nav-link @yield('wedding_active')">
+                                <i class="nav-icon fas fa-heart"></i>
+                                <p>Wedding</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

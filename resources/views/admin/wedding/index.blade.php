@@ -1,5 +1,5 @@
-@section('title', 'Restaurant')
-@section('restaurant_active', 'active')
+@section('title', 'Wedding')
+@section('wedding_active', 'active')
 
 @push('js')
 <script src="{{ asset('vendors/adminlte') }}/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -104,7 +104,7 @@
                         <div class="card-header">
                             <h3 class="card-title font-weight-bold"><i class="fas fa-list"></i> List</h3>
                             <div class="card-tools">
-                                <a href="{{ route('restaurant.create') }}" class="btn btn-success font-weight-bold"><i class="fas fa-plus"></i> New
+                                <a href="{{ route('wedding.create') }}" class="btn btn-success font-weight-bold"><i class="fas fa-plus"></i> New
                                 </a>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($restaurants as $data)
+                                    @foreach ($weddings as $data)
                                     <tr>
                                         <td>{{ $data->title }}</td>
                                         <td>{!! Str::limit($data->description, 100) !!}</td>
@@ -131,8 +131,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('restaurant-image.show', [$data->id]) }}" class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="top" title="restaurant Images"><i class="fas fa-images"></i></a>
-                                            <a href="{{ route('restaurant.edit', [$data->id]) }}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('wedding.edit', [$data->id]) }}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
                                             <span data-toggle="tooltip" data-placement="top" title="Delete"><button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_delete_{{ $data->id }}" data-placement="top" title="Delete"><i class="fas fa-trash"></i></button></span>
 
                                             {{-- delete modal --}}
@@ -150,7 +149,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-ban"></i> Cancel</button>
-                                                            <form method="POST" action="{{ route('restaurant.destroy', [$data->id]) }}">
+                                                            <form method="POST" action="{{ route('wedding.destroy', [$data->id]) }}">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>
@@ -176,7 +175,7 @@
                         </div>
                     </div>
                 </div>
-                <form method="POST" action="{{ route('restaurant-setting.update', [$setting->id]) }}" enctype="multipart/form-data" class="col-lg-12">
+                <form method="POST" action="{{ route('wedding-setting.update', [$setting->id]) }}" enctype="multipart/form-data" class="col-lg-12">
                     @method('PUT')
                     @csrf
                     <div class="card card-primary card-outline">
@@ -222,22 +221,6 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-6">
-                                            <label>Operating Hour</label>
-                                            <input type="text" class="form-control" placeholder="Type something" name="operating_hour" value="{{ $setting->operating_hour }}">
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label>Cuisine Type</label>
-                                            <input type="text" class="form-control" placeholder="Type something" name="cuisine" value="{{ $setting->cuisine }}">
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label>Contact Email</label>
-                                            <input type="text" class="form-control" placeholder="Type something" name="contact_email" value="{{ $setting->contact_email }}">
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label>Contact Phone</label>
-                                            <input type="text" class="form-control" placeholder="Type something" name="contact_phone" value="{{ $setting->contact_phone }}">
-                                        </div>
                                         <div class="form-group col-lg-6">
                                             <label>Button Text</label>
                                             <input type="text" class="form-control" placeholder="Type something" name="button_text" value="{{ $setting->button_text }}">

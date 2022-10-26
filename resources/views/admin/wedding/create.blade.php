@@ -1,5 +1,5 @@
-@section('title', 'New Restaurant')
-@section('restaurant_active', 'active')
+@section('title', 'New Wedding')
+@section('wedding_active', 'active')
 
 @push('js')
 <script src="{{ asset('vendors/adminlte') }}/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('restaurant.index') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('wedding.index') }}">Home</a></li>
                         <li class="breadcrumb-item active">@yield('title')</li>
                     </ol>
                 </div>
@@ -72,7 +72,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <form method="POST" action="{{ route('restaurant.store') }}" enctype="multipart/form-data" class="col-lg-12">
+                <form method="POST" action="{{ route('wedding.store') }}" enctype="multipart/form-data" class="col-lg-12">
                     @csrf
                     <div class="card card-success card-outline">
                         <div class="card-header">
