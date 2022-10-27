@@ -22,7 +22,7 @@ require __DIR__ . '/auth.php';
 // ADMIN
 Route::middleware(['auth', 'verified'])->prefix('panel/admin')->group(function () {
     Route::resource('dashboard', App\Http\Controllers\Admin\DashboardController::class);
-    
+
     Route::resource('villa', App\Http\Controllers\Admin\VillaController::class);
     Route::resource('villa-setting', App\Http\Controllers\Admin\VillaSettingController::class);
     Route::resource('villa-feature', App\Http\Controllers\Admin\VillaFeatureController::class);
@@ -43,4 +43,8 @@ Route::middleware(['auth', 'verified'])->prefix('panel/admin')->group(function (
 
     Route::resource('wedding', App\Http\Controllers\Admin\WeddingController::class);
     Route::resource('wedding-setting', App\Http\Controllers\Admin\WeddingSettingController::class);
+
+    Route::resource('gallery', App\Http\Controllers\Admin\GalleryController::class);
+    Route::resource('gallery-setting', App\Http\Controllers\Admin\GallerySettingController::class);
+    Route::resource('category', App\Http\Controllers\Admin\CategoryController::class);
 });

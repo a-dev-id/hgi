@@ -71,6 +71,12 @@
                                 <p>Wedding</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('gallery.index') }}" class="nav-link @yield('gallery_active')">
+                                <i class="nav-icon fas fa-images"></i>
+                                <p>Gallery</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
