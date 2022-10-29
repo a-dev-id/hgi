@@ -77,6 +77,12 @@
                                 <p>Gallery</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('contact-us.index') }}" class="nav-link @yield('contact_us_active')">
+                                <i class="nav-icon fas fa-phone-volume"></i>
+                                <p>Contact Us</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

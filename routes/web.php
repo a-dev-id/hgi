@@ -47,4 +47,6 @@ Route::middleware(['auth', 'verified'])->prefix('panel/admin')->group(function (
     Route::resource('gallery', App\Http\Controllers\Admin\GalleryController::class);
     Route::resource('gallery-setting', App\Http\Controllers\Admin\GallerySettingController::class);
     Route::resource('category', App\Http\Controllers\Admin\CategoryController::class);
+
+    Route::resource('contact-us', App\Http\Controllers\Admin\ContactUsSettingController::class);
 });
