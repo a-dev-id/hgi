@@ -83,6 +83,36 @@
                                 <p>Contact Us</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('page.index') }}" class="nav-link @yield('page_active')">
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <p>Other Page</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('award.index') }}" class="nav-link @yield('award_active')">
+                                <i class="nav-icon fas fa-trophy"></i>
+                                <p>Award</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('press-room.index') }}" class="nav-link @yield('press_room_active')">
+                                <i class="nav-icon far fa-newspaper"></i>
+                                <p>Press Room</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('career.index') }}" class="nav-link @yield('career_active')">
+                                <i class="nav-icon fas fa-briefcase"></i>
+                                <p>Career</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('blog.index') }}" class="nav-link @yield('blog_active')">
+                                <i class="nav-icon fab fa-blogger-b"></i>
+                                <p>Blog</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

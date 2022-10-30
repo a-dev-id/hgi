@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('banner_image')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

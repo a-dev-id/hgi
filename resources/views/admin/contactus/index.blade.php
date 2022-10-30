@@ -171,7 +171,7 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label>Phone Number</label>
-                                            <input type="text" class="form-control" placeholder="Type something" name="operating_hour" value="{{ $setting->operating_hour }}">
+                                            <input type="text" class="form-control" placeholder="Type something" name="phone_no" value="{{ $setting->phone_no }}">
                                         </div>
 
                                         <div class="form-group col-lg-6">

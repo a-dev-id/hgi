@@ -49,4 +49,18 @@ Route::middleware(['auth', 'verified'])->prefix('panel/admin')->group(function (
     Route::resource('category', App\Http\Controllers\Admin\CategoryController::class);
 
     Route::resource('contact-us', App\Http\Controllers\Admin\ContactUsSettingController::class);
+
+    Route::resource('page', App\Http\Controllers\Admin\PageController::class);
+
+    Route::resource('award', App\Http\Controllers\Admin\AwardController::class);
+    Route::resource('award-setting', App\Http\Controllers\Admin\AwardSettingController::class);
+
+    Route::resource('press-room', App\Http\Controllers\Admin\PressRoomController::class);
+    Route::resource('press-room-setting', App\Http\Controllers\Admin\PressRoomSettingController::class);
+
+    Route::resource('career', App\Http\Controllers\Admin\CareerController::class);
+    Route::resource('career-setting', App\Http\Controllers\Admin\CareerSettingController::class);
+
+    Route::resource('blog', App\Http\Controllers\Admin\BlogController::class);
+    Route::resource('blog-setting', App\Http\Controllers\Admin\BlogSettingController::class);
 });
