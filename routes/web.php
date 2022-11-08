@@ -64,3 +64,8 @@ Route::middleware(['auth', 'verified'])->prefix('panel/admin')->group(function (
     Route::resource('blog', App\Http\Controllers\Admin\BlogController::class);
     Route::resource('blog-setting', App\Http\Controllers\Admin\BlogSettingController::class);
 });
+
+
+Route::get('/pjv', function () {
+    return view('pjv.index');
+});

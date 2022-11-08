@@ -337,10 +337,10 @@
                 top: 142px;
                 left: calc(50% - 123.275px);
                 /*display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;*/
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;*/
             }
         }
 
@@ -896,6 +896,7 @@
         .black-white-gradient {
             background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
         }
+
     </style>
     <script type="text/javascript">
         if (screen.width < 768) {
@@ -1178,6 +1179,7 @@
                 bottom: 230px;
             }
         }
+
     </style>
     <!-- Content -->
 
