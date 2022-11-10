@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/hgob', function () {
     return view('front.index');
 });
+
+Route::resource('/pjv', App\Http\Controllers\Pjv\HomeController::class);
 
 require __DIR__ . '/auth.php';
 
@@ -63,9 +65,4 @@ Route::middleware(['auth', 'verified'])->prefix('panel/admin')->group(function (
 
     Route::resource('blog', App\Http\Controllers\Admin\BlogController::class);
     Route::resource('blog-setting', App\Http\Controllers\Admin\BlogSettingController::class);
-});
-
-
-Route::get('/pjv', function () {
-    return view('pjv.index');
 });
